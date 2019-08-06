@@ -1,6 +1,9 @@
 <template>
   <div class="about">
     <h1 v-on:click="ss">This is an about page</h1>
+    <p v-for="aa in axero" :key="aa">
+      {{aa}}
+    </p>
     <p>{{axero.a}}</p>
     <p>{{axero.b}}</p>
     <HelloWorld msg="hahha"/>

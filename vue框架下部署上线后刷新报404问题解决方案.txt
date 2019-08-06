@@ -1,0 +1,40 @@
+1、Internet Information Services (IIS)
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+ <system.webServer>
+   <rewrite>
+     <rules>
+       <rule name="Handle History Mode and custom 404/500" stopProcessing="true">
+         <match url="(.*)" />
+         <conditions logicalGrouping="MatchAll">
+           <add input="{REQUEST_FILENAME}" matchType="IsFile" negate="true" />
+           <add input="{REQUEST_FILENAME}" matchType="IsDirectory" negate="true" />
+         </conditions>
+         <action type="Rewrite" url="/" />
+       </rule>
+     </rules>
+   </rewrite>
+ </system.webServer>
+</configuration>
+
+2、nginx
+
+server {
+         listen 80;
+
+         server_name testwx.wangshibo.com;
+         root /Data/app/xqsj_wx/dist;
+         index index.html;
+         access_log /var/log/testwx.log main;
+         
+		## 注意从这里开始
+         location / {
+             try_files $uri $uri/ @router;
+             index index.html;
+         }
+
+        location @router {
+            rewrite ^.*$ /index.html last;
+        }
+
+}
