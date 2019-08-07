@@ -19,6 +19,9 @@
 </template>
 
 <script>
+
+import { IndexGet } from '@/request/api';
+
 export default {
   name: "item",
   data: function() {
@@ -76,12 +79,13 @@ export default {
     };
   },
   mounted() {
-    //  写ajax请求
-    // this.axios.get('/api/getdata.vue').then((response)=>{
-    //     console.log(response.data)
-    // }).catch((response)=>{
-    //     console.log(response)
-    // })
+    IndexGet({                    
+          type: 0,                    
+          sort: 1                
+      }).then(res => {
+          // 获取数据成功后的其他操作
+          console.log("xxx")                
+      }) 
   }
 };
 </script>

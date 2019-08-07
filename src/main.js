@@ -12,4 +12,10 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-Vue.use(VueAxios,axios);
+// Vue.use(VueAxios,axios);
+
+axios.defaults.baseURL = '/api'
+
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+
+Vue.config.productionTip = false
